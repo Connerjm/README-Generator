@@ -5,8 +5,8 @@ This is a Node.js command-line application that will dynamically generate a READ
 Acceptance Criteria is as follows:
 
 - [ ] Prompt user for their repo information and generate a README.md file that includes
-  - [ ] Title
-  - [ ] Description
+  - [x] Title
+  - [x] Description
   - [ ] Table of Contents
   - [ ] Installation
   - [ ] Usage

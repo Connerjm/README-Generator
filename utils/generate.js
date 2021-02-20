@@ -10,14 +10,25 @@
 // // If there is no license, return an empty string
 // function renderLicenseSection(license) {}
 
+/* Main function */
+
 // Takes the object from inquirer and parses it into a big string.
 function generate(data)
 {
-  var markdown = `# ${data.title}\n`;
-
-
-
-  return markdown;
+  var markdown = `# ${data.title}\n\n`;
+  //Table of contents.
+  markdown += `## Description\n\n${data.description}`;
+  //Installation.
+  //Usage.
+  //License.
+  //Contributing.
+  //Tests.
+  //Questions.
+  return markdown + `\n`;
 }
+
+/* Helper functions */
+
+/*Export functions */
 
 module.exports = generate;
