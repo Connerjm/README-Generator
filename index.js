@@ -61,6 +61,11 @@ function promptUser(sectionsArr)
         .catch(error => console.error(error));
 }
 
+function shouldAsk()
+{
+    //TODO
+}
+
 //Writes the formatted data into the file.
 function writeToFile(fileName, data)
 {
