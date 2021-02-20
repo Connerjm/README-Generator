@@ -18,6 +18,37 @@ const questions = [
         message: "Describe your project.",
         name: "description"
     },
+    {
+        type: "input",
+        message: "Describe the installation instructions.",
+        name: "installation"
+    },
+    {
+        type: "input",
+        message: "Describe the usage instructions.",
+        name: "usage"
+    },
+    {
+        type: "list",
+        message: "Which license does this project have?",
+        choices: [],
+        name: "license"
+    },
+    {
+        type: "input",
+        message: "Describe how a user can contribute to this project.",
+        name: "contributing"
+    },
+    {
+        type: "input",
+        message: "Include the test information here.",
+        name: "tests"
+    },
+    {
+        type: "input",
+        message: "Put frequently asked questions here.",
+        name: "questions"
+    }
 ];
 
 /* Functions */
