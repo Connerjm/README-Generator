@@ -13,13 +13,15 @@
 /* Main function */
 
 // Takes the object from inquirer and parses it into a big string.
-function generate(data)
+function generate(response, data)
 {
+  console.log(response);
   console.log(data);
 
   var markdown = `# ${data.title}\n\n`;
   //Table of contents.
   markdown += `## Description\n\n${data.description}`;
+  //Use .hasOwnProperty() to determine if the question was answered.
   //Installation.
   //Usage.
   //License.
