@@ -1,3 +1,7 @@
+/* Variables */
+
+var badges = [];
+
 /* Main function */
 
 // Takes the object from inquirer and parses it into a big string.
@@ -8,6 +12,9 @@ function generate(requiredData, optionalData)
 
   //Title.
   var title = `# ${requiredData.title}\n\n`;
+
+  //Making a badge for the repo owner.
+  badges.push(`[![${requiredData.userName} Owner](https://img.shields.io/badge/Owner-${requiredData.userName}-green)](https://github.com/${requiredData.userName})`);
   
   //Table of contents.
   var toc = `## Table of Contents\n\n- [Description](#description)\n`;
@@ -48,7 +55,7 @@ function generate(requiredData, optionalData)
   var license = optionsArr.includes("License") ? processLicense(requiredData.title, optionalData.license) : "";
 
   //Combine the elements and return it.
-  return `${title}${toc}${description}${features}${install}${technologies}${usage}${credits}${contribute}${tests}${questions}${license}`;
+  return `${title}${badges.join(" ")}\n\n${toc}${description}${features}${install}${technologies}${usage}${credits}${contribute}${tests}${questions}${license}`;
 }
 
 /* Helper functions */
@@ -58,7 +65,11 @@ function processTech (technologies)
 {
   var string = `\n## Technologies\n\n`;
   for (let i = 0; i < technologies.length; i++)
-    string += `- ${technologies[i]}\n`;
+  {
+    var tech = technologies[i];
+    badges.push(`[![${tech} Tech](https://img.shields.io/badge/License-${tech}-orange)](https://github.com/topics/${tech})`);
+    string += `- ${tech}\n`;
+  }
   return string;
 }
 
@@ -82,9 +93,9 @@ function processQuestions (userName, email, questions)
 //Builds the string for the license related information.
 function processLicense (title, license)
 {
-  var badge = `[![${license} License](https://img.shields.io/badge/License-${license}-blue)](https://www.opensource.org/licenses/${license})`;
+  badges.push(`[![${license} License](https://img.shields.io/badge/License-${license}-blue)](https://www.opensource.org/licenses/${license})`);
   var string = `${title} is released under the [${license} License](https://www.opensource.org/licenses/${license}).`;
-  return `\n## License\n\n${badge} ${string}\n`;
+  return `\n## License\n\n${string}\n`;
 }
 
 /*Export functions */
