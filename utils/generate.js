@@ -42,7 +42,7 @@ function generate(requiredData, optionalData)
   var tests = optionsArr.includes("Tests") ? `\n## Tests\n\n${optionalData.tests}\n` : "";
 
   //Questions.
-  var questions = optionsArr.includes("Questions") ? `\n## Questions\n\n${optionalData.questions}\n` : "";
+  var questions = optionsArr.includes("Questions") ? processQuestions(requiredData.userName, optionalData.email, optionalData.questions) : "";
 
   //License.
   var license = optionsArr.includes("License") ? processLicense(requiredData.title, optionalData.license) : "";
@@ -54,7 +54,7 @@ function generate(requiredData, optionalData)
 /* Helper functions */
 
 //Builds the string for the list of technologies used.
-function processTech(technologies)
+function processTech (technologies)
 {
   var string = `\n## Technologies\n\n`;
   for (let i = 0; i < technologies.length; i++)
@@ -68,6 +68,15 @@ function processCredits (users)
   var usersArr = users.split(" ");
   var linksArr = usersArr.map(user => `[${user}](https://github.com/${user})`);
   return `\n## Credits\n\n${linksArr.join(", ")}\n`;
+}
+
+//Builds the string for the questions section with GitHub username and email.
+function processQuestions (userName, email, questions)
+{
+  var header = `\n## Questions\n\n`;
+  var faqs = `### FAQs\n\n` + questions;
+  var help = `\n\nIf you have any questions or concerns, feel free to contact me at my [GitHub](https://github.com/${userName}) or via email at ${email}.\n`;
+  return header + faqs + help;
 }
 
 //Builds the string for the license related information.

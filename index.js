@@ -12,7 +12,13 @@ function init()
     const options = ["Features", "Installation", "Technologies", "Usage", "Credits", "License", "Contributing", "Tests", "Questions"];
     inquirer
         .prompt(
-            [{
+            [
+            {
+                type: "input",
+                message: "Enter your GitHub username.",
+                name: "userName"
+            },
+            {
                 type: "input",
                 message: "Enter the title of your project.",
                 name: "title"
@@ -85,6 +91,12 @@ function promptUser(response)
         message: "Put frequently asked questions here.",
         when: chosenSections.includes("Questions"),
         name: "questions"
+    },
+    {
+        type: "input",
+        message: "What is your email address?",
+        when: chosenSections.includes("Questions"),
+        name: "email"
     },
     {
         type: "list",
