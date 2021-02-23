@@ -18,3 +18,17 @@ Acceptance Criteria is as follows:
   - [x] Tests.
   - [x] Questions. - Puts username and email as links.
   - [x] License. - Creates a badge and links to the respective opensource article.
+
+## Installation
+
+Prior to use, install required packages with
+
+```bash
+$ npm install
+```
+
+Then run the program with
+
+```bash
+$ node index.js
+```
