@@ -10,16 +10,18 @@ function generate(requiredData, optionalData)
   var title = `# ${requiredData.title}\n\n`;
   
   //Table of contents.
-  var toc = `## Table of Contents\n\n- [Description](#description)\n`;
+  var toc = `## Table of Contents\n\n- [Description](#description)`;
   for (let i = 0; i < optionsArr.length; i++)
   {
     let option = optionsArr[i];
     toc += `- [${option}](#${option.toLowerCase()})\n`;
   }
-  toc += `\n`;
+
+  //Features.
+  var features = `\n## Features\n\n${optionalData.features}\n`;
 
   //Description.
-  var description = `## Description\n\n${requiredData.description}\n`;
+  var description = `\n## Description\n\n${requiredData.description}\n`;
 
   //Installation.
   var install = optionsArr.includes("Installation") ? `\n## Installation\n\n${optionalData.installation}\n` : "";
@@ -43,7 +45,7 @@ function generate(requiredData, optionalData)
   var license = optionsArr.includes("License") ? processLicense(requiredData.title, optionalData.license) : "";
 
   //Combine the elements and return it.
-  return `${title}${toc}${description}${install}${usage}${credits}${contribute}${tests}${questions}${license}`;
+  return `${title}${toc}${features}${description}${install}${usage}${credits}${contribute}${tests}${questions}${license}`;
 }
 
 /* Helper functions */
@@ -52,7 +54,7 @@ function processCredits (users)
 {
   var usersArr = users.split(" ");
   var linksArr = usersArr.map(user => `[${user}](https://github.com/${user})`);
-  return `\n## Credits\n\n${linksArr.join(", ")}\n`
+  return `\n## Credits\n\n${linksArr.join(", ")}\n`;
 }
 
 //Builds the string for the license related information.
