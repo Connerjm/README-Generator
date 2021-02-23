@@ -53,6 +53,7 @@ function generate(requiredData, optionalData)
 
 /* Helper functions */
 
+//Builds the string for the list of technologies used.
 function processTech(technologies)
 {
   var string = `\n## Technologies\n\n`;
@@ -61,6 +62,7 @@ function processTech(technologies)
   return string;
 }
 
+//Builds the string of user names which are turned into links.
 function processCredits (users)
 {
   var usersArr = users.split(" ");
