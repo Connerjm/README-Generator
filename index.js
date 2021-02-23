@@ -9,11 +9,6 @@ const generate = require("./utils/generate");
 //Initializing function called when the application is run.
 function init()
 {
-    // const options = questions.map(option => 
-    //     {
-    //         var name = option.name;
-    //         return name.charAt(0).toUpperCase() + name.slice(1);
-    //     });
     const options = ["Installation", "Usage", "Credits", "License", "Contributing", "Tests", "Questions"];
     inquirer
         .prompt(
@@ -37,6 +32,7 @@ function init()
         .catch(error => console.error(error));
 }
 
+//Asks the user which sections they would like to include.
 function promptUser(response)
 {
     var chosenSections = response.sections;
@@ -62,7 +58,7 @@ function promptUser(response)
     {
         type: "list",
         message: "Which license does this project have?",
-        choices: ["AGPLv3", "GPLv3", "LGPLv3", "Mozilla Public 2.0", "Apache 2.0", "MIT", "Boost Software 1.0", "The Unilicense"],
+        choices: ["AGPL--3.0", "GPL--3.0", "LGPL--3.0", "MPL--2.0", "Apache--2.0", "MIT", "BSL--1.0", "Unlicense"],
         when: chosenSections.includes("License"),
         name: "license"
     },
@@ -92,14 +88,13 @@ function promptUser(response)
 //Writes the formatted data into the file.
 function writeToFile(fileName, data)
 {
-    console.log(data);
-    // fs.writeFile(fileName, data, (error) =>
-    // {
-    //     if (error)
-    //         console.error(error);
-    //     else
-    //         console.log("Success!");
-    // });
+    fs.writeFile(fileName, data, (error) =>
+    {
+        if (error)
+            console.error(error);
+        else
+            console.log("Success!");
+    });
 }
 
 /* Initialize */

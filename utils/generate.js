@@ -1,20 +1,9 @@
-// // TODO: Create a function that returns a license badge based on which license is passed in
-// // If there is no license, return an empty string
-// function renderLicenseBadge(license) {}
-
-// // TODO: Create a function that returns the license link
-// // If there is no license, return an empty string
-// function renderLicenseLink(license) {}
-
-// // TODO: Create a function that returns the license section of README
-// // If there is no license, return an empty string
-// function renderLicenseSection(license) {}
-
 /* Main function */
 
 // Takes the object from inquirer and parses it into a big string.
 function generate(requiredData, optionalData)
 {
+  //Array of the selected optional sections.
   const optionsArr = requiredData.sections;
 
   //Title.
@@ -41,9 +30,6 @@ function generate(requiredData, optionalData)
   //Credits.
   var credits = optionsArr.includes("Credits") ? `## Credits\n\n${optionalData.credits}\n\n` : "";
 
-  //License.
-  //TODO
-
   //Contributing.
   var contribute = optionsArr.includes("Contributing") ? `## Contributing\n\n${optionalData.contributing}\n\n` : "";
 
@@ -53,10 +39,22 @@ function generate(requiredData, optionalData)
   //Questions.
   var questions = optionsArr.includes("Questions") ? `## Questions\n\n${optionalData.questions}\n\n` : "";
 
-  return title + toc + description + install + usage + credits + contribute + tests + questions;
+  //License.
+  var license = optionsArr.includes("License") ? processLicense(requiredData.title, optionalData.license) : "";
+
+  //Combine the elements and return it.
+  return `${title}${toc}${description}${install}${usage}${credits}${contribute}${tests}${questions}${license}`;
 }
 
 /* Helper functions */
+
+//Builds the string for the license related information.
+function processLicense (title, license)
+{
+  var badge = `[![${license} License](https://img.shields.io/badge/License-${license}-blue)](https://www.opensource.org/licenses/${license})`;
+  var string = `${title} is released under the [${license} License](https://www.opensource.org/licenses/${license}).`;
+  return `## License\n\n${badge} ${string}\n`;
+}
 
 /*Export functions */
 
