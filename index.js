@@ -14,7 +14,7 @@ function init()
     //         var name = option.name;
     //         return name.charAt(0).toUpperCase() + name.slice(1);
     //     });
-    const options = ["Installation", "Usage", "License", "Contributing", "Tests", "Questions"];
+    const options = ["Installation", "Usage", "Credits", "License", "Contributing", "Tests", "Questions"];
     inquirer
         .prompt(
             [{
@@ -40,7 +40,6 @@ function init()
 function promptUser(response)
 {
     var chosenSections = response.sections;
-    console.log(chosenSections);
     inquirer.prompt([
     {
         type: "input",
@@ -55,9 +54,15 @@ function promptUser(response)
         name: "usage"
     },
     {
+        type: "input",
+        message: "Enter the usernames of any developers you need to credit.",
+        when: chosenSections.includes("Credits"),
+        name: "credits"
+    },
+    {
         type: "list",
         message: "Which license does this project have?",
-        choices: ["MIT"],
+        choices: ["AGPLv3", "GPLv3", "LGPLv3", "Mozilla Public 2.0", "Apache 2.0", "MIT", "Boost Software 1.0", "The Unilicense"],
         when: chosenSections.includes("License"),
         name: "license"
     },
@@ -87,6 +92,7 @@ function promptUser(response)
 //Writes the formatted data into the file.
 function writeToFile(fileName, data)
 {
+    console.log(data);
     // fs.writeFile(fileName, data, (error) =>
     // {
     //     if (error)

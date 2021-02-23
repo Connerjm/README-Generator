@@ -13,22 +13,47 @@
 /* Main function */
 
 // Takes the object from inquirer and parses it into a big string.
-function generate(response, data)
+function generate(requiredData, optionalData)
 {
-  console.log(response);
-  console.log(data);
+  const optionsArr = requiredData.sections;
 
-  var markdown = `# ${data.title}\n\n`;
+  //Title.
+  var title = `# ${requiredData.title}\n\n`;
+  
   //Table of contents.
-  markdown += `## Description\n\n${data.description}`;
-  //Use .hasOwnProperty() to determine if the question was answered.
+  var toc = `## Table of Contents\n\n- [Description](#description)\n`;
+  for (let i = 0; i < optionsArr.length; i++)
+  {
+    let option = optionsArr[i];
+    toc += `- [${option}](#${option.toLowerCase()})\n`;
+  }
+  toc += `\n`;
+
+  //Description.
+  var description = `## Description\n\n${requiredData.description}\n\n`;
+
   //Installation.
+  var install = optionsArr.includes("Installation") ? `## Installation\n\n${optionalData.installation}\n\n` : "";
+
   //Usage.
+  var usage = optionsArr.includes("Usage") ? `## Usage\n\n${optionalData.usage}\n\n` : "";
+
+  //Credits.
+  var credits = optionsArr.includes("Credits") ? `## Credits\n\n${optionalData.credits}\n\n` : "";
+
   //License.
+  //TODO
+
   //Contributing.
+  var contribute = optionsArr.includes("Contributing") ? `## Contributing\n\n${optionalData.contributing}\n\n` : "";
+
   //Tests.
+  var tests = optionsArr.includes("Tests") ? `## Tests\n\n${optionalData.tests}\n\n` : "";
+
   //Questions.
-  return markdown + `\n`;
+  var questions = optionsArr.includes("Questions") ? `## Questions\n\n${optionalData.questions}\n\n` : "";
+
+  return title + toc + description + install + usage + credits + contribute + tests + questions;
 }
 
 /* Helper functions */
