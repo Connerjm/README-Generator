@@ -19,25 +19,25 @@ function generate(requiredData, optionalData)
   toc += `\n`;
 
   //Description.
-  var description = `## Description\n\n${requiredData.description}\n\n`;
+  var description = `## Description\n\n${requiredData.description}\n`;
 
   //Installation.
-  var install = optionsArr.includes("Installation") ? `## Installation\n\n${optionalData.installation}\n\n` : "";
+  var install = optionsArr.includes("Installation") ? `\n## Installation\n\n${optionalData.installation}\n` : "";
 
   //Usage.
-  var usage = optionsArr.includes("Usage") ? `## Usage\n\n${optionalData.usage}\n\n` : "";
+  var usage = optionsArr.includes("Usage") ? `\n## Usage\n\n${optionalData.usage}\n` : "";
 
   //Credits.
-  var credits = optionsArr.includes("Credits") ? `## Credits\n\n${optionalData.credits}\n\n` : "";
+  var credits = optionsArr.includes("Credits") ? processCredits(optionalData.credits) : "";
 
   //Contributing.
-  var contribute = optionsArr.includes("Contributing") ? `## Contributing\n\n${optionalData.contributing}\n\n` : "";
+  var contribute = optionsArr.includes("Contributing") ? `\n## Contributing\n\n${optionalData.contributing}\n` : "";
 
   //Tests.
-  var tests = optionsArr.includes("Tests") ? `## Tests\n\n${optionalData.tests}\n\n` : "";
+  var tests = optionsArr.includes("Tests") ? `\n## Tests\n\n${optionalData.tests}\n` : "";
 
   //Questions.
-  var questions = optionsArr.includes("Questions") ? `## Questions\n\n${optionalData.questions}\n\n` : "";
+  var questions = optionsArr.includes("Questions") ? `\n## Questions\n\n${optionalData.questions}\n` : "";
 
   //License.
   var license = optionsArr.includes("License") ? processLicense(requiredData.title, optionalData.license) : "";
@@ -48,12 +48,19 @@ function generate(requiredData, optionalData)
 
 /* Helper functions */
 
+function processCredits (users)
+{
+  var usersArr = users.split(" ");
+  var linksArr = usersArr.map(user => `[${user}](https://github.com/${user})`);
+  return `\n## Credits\n\n${linksArr.join(", ")}\n`
+}
+
 //Builds the string for the license related information.
 function processLicense (title, license)
 {
   var badge = `[![${license} License](https://img.shields.io/badge/License-${license}-blue)](https://www.opensource.org/licenses/${license})`;
   var string = `${title} is released under the [${license} License](https://www.opensource.org/licenses/${license}).`;
-  return `## License\n\n${badge} ${string}\n`;
+  return `\n## License\n\n${badge} ${string}\n`;
 }
 
 /*Export functions */

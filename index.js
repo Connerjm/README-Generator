@@ -51,16 +51,9 @@ function promptUser(response)
     },
     {
         type: "input",
-        message: "Enter the usernames of any developers you need to credit.",
+        message: "Enter the GitHub usernames of any developers you need to credit, seperated by a space.",
         when: chosenSections.includes("Credits"),
         name: "credits"
-    },
-    {
-        type: "list",
-        message: "Which license does this project have?",
-        choices: ["AGPL--3.0", "GPL--3.0", "LGPL--3.0", "MPL--2.0", "Apache--2.0", "MIT", "BSL--1.0", "Unlicense"],
-        when: chosenSections.includes("License"),
-        name: "license"
     },
     {
         type: "input",
@@ -79,6 +72,13 @@ function promptUser(response)
         message: "Put frequently asked questions here.",
         when: chosenSections.includes("Questions"),
         name: "questions"
+    },
+    {
+        type: "list",
+        message: "Which license does this project have?",
+        choices: ["AGPL--3.0", "GPL--3.0", "LGPL--3.0", "MPL--2.0", "Apache--2.0", "MIT", "BSL--1.0", "Unlicense"],
+        when: chosenSections.includes("License"),
+        name: "license"
     }
 ])
         .then((answers) => writeToFile("./RENAMEME.md", generate(response, answers)))
