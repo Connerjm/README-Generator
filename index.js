@@ -81,7 +81,7 @@ function promptUser(response)
         name: "questions"
     }
 ])
-        .then((answers) => writeToFile("./NEWREADME.md", generate(response, answers)))
+        .then((answers) => writeToFile("./RENAMEME.md", generate(response, answers)))
         .catch(error => console.error(error));
 }
 
