@@ -9,7 +9,7 @@ const generate = require("./utils/generate");
 //Initializing function called when the application is run.
 function init()
 {
-    const options = ["Features", "Installation", "Usage", "Credits", "License", "Contributing", "Tests", "Questions"];
+    const options = ["Features", "Installation", "Technologies", "Usage", "Credits", "License", "Contributing", "Tests", "Questions"];
     inquirer
         .prompt(
             [{
@@ -48,6 +48,13 @@ function promptUser(response)
         message: "Describe the installation instructions.",
         when: chosenSections.includes("Installation"),
         name: "installation"
+    },
+    {
+        type: "checkbox",
+        message: "Which technologies was the project created with?",
+        choices: ["C/C++", "C#", "CSS", "Go", "HTML", "Java", "JavaScript", "MATLAB", "PHP", "Python", "R", "Swift"],
+        when: chosenSections.includes("Technologies"),
+        name: "technologies"
     },
     {
         type: "input",

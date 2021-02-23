@@ -10,21 +10,24 @@ function generate(requiredData, optionalData)
   var title = `# ${requiredData.title}\n\n`;
   
   //Table of contents.
-  var toc = `## Table of Contents\n\n- [Description](#description)`;
+  var toc = `## Table of Contents\n\n- [Description](#description)\n`;
   for (let i = 0; i < optionsArr.length; i++)
   {
     let option = optionsArr[i];
     toc += `- [${option}](#${option.toLowerCase()})\n`;
   }
 
-  //Features.
-  var features = `\n## Features\n\n${optionalData.features}\n`;
-
   //Description.
   var description = `\n## Description\n\n${requiredData.description}\n`;
 
+  //Features.
+  var features = optionsArr.includes("Features") ? `\n## Features\n\n${optionalData.features}\n` : "";
+
   //Installation.
   var install = optionsArr.includes("Installation") ? `\n## Installation\n\n${optionalData.installation}\n` : "";
+
+  //Technologies.
+  var technologies = optionsArr.includes("Technologies") ? processTech(optionalData.technologies) : "";
 
   //Usage.
   var usage = optionsArr.includes("Usage") ? `\n## Usage\n\n${optionalData.usage}\n` : "";
@@ -45,10 +48,18 @@ function generate(requiredData, optionalData)
   var license = optionsArr.includes("License") ? processLicense(requiredData.title, optionalData.license) : "";
 
   //Combine the elements and return it.
-  return `${title}${toc}${features}${description}${install}${usage}${credits}${contribute}${tests}${questions}${license}`;
+  return `${title}${toc}${description}${features}${install}${technologies}${usage}${credits}${contribute}${tests}${questions}${license}`;
 }
 
 /* Helper functions */
+
+function processTech(technologies)
+{
+  var string = `\n## Technologies\n\n`;
+  for (let i = 0; i < technologies.length; i++)
+    string += `- ${technologies[i]}\n`;
+  return string;
+}
 
 function processCredits (users)
 {
