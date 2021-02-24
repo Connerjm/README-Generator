@@ -21,10 +21,16 @@ Acceptance Criteria is as follows:
 
 ## Installation
 
+Clone project with https using:
+
+```bash
+$ git clone https://github.com/Connerjm/README-Generator.git
+```
+
 Prior to use, install required packages with
 
 ```bash
-$ npm install
+$ npm i
 ```
 
 Then run the program with
