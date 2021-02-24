@@ -9,11 +9,10 @@ const generate = require("./utils/generate");
 //Initializing function called when the application is run.
 function init()
 {
-    const options = ["Features", "Installation", "Technologies", "Usage", "Credits", "License", "Contributing", "Tests", "Questions"];
+    //An array of the optional sections to be shown to the user.
+    const options = ["Features", "Installation", "Technologies", "Usage", "Credits", "Contributing", "Tests", "Questions", "License"];
     inquirer
-        .prompt(
-            [
-            {
+        .prompt([{
                 type: "input",
                 message: "Enter your GitHub username.",
                 name: "userName"
@@ -42,8 +41,8 @@ function init()
 function promptUser(response)
 {
     var chosenSections = response.sections;
-    inquirer.prompt([
-    {
+    inquirer
+        .prompt([{
         type: "input",
         message: "Describe the noteable features of your project.",
         when: chosenSections.includes("Features"),

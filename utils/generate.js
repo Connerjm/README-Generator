@@ -1,10 +1,11 @@
 /* Variables */
 
+//An array of generated badge text to be put at the top of the readme.
 var badges = [];
 
 /* Main function */
 
-// Takes the object from inquirer and parses it into a big string.
+// Takes the objects from inquirer and parses it into a big string.
 function generate(requiredData, optionalData)
 {
   //Array of the selected optional sections.
@@ -98,6 +99,6 @@ function processLicense (title, license)
   return `\n## License\n\n${string}\n`;
 }
 
-/*Export functions */
+/*Export function. */
 
 module.exports = generate;
