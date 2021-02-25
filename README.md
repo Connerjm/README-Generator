@@ -52,3 +52,6 @@ $ node index.js
 ```
 
 ## Demonstration
+
+Example run of the application.
+![Demonstration Gif](./assets/READMEGenerator.gif)
