@@ -56,7 +56,7 @@ function generate(requiredData, optionalData)
   var license = optionsArr.includes("License") ? processLicense(requiredData.title, optionalData.license) : "";
 
   //Combine the elements and return it.
-  return `${title}${badges.join(" ")}\n\n${toc}${description}${features}${install}${technologies}${usage}${credits}${contribute}${tests}${questions}${license}`;
+  return `${title}${badges.join("\n")}\n\n${toc}${description}${features}${install}${technologies}${usage}${credits}${contribute}${tests}${questions}${license}`;
 }
 
 /* Helper functions */
@@ -68,7 +68,7 @@ function processTech (technologies)
   for (let i = 0; i < technologies.length; i++)
   {
     var tech = technologies[i];
-    badges.push(`[![${tech} Tech](https://img.shields.io/badge/License-${tech}-orange)](https://github.com/topics/${tech})`);
+    badges.push(`[![${tech} Tech](https://img.shields.io/badge/Tech-${tech}-orange)](https://github.com/topics/${tech})`);
     string += `- ${tech}\n`;
   }
   return string;
