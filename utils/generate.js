@@ -87,7 +87,7 @@ function processQuestions (userName, email, questions)
 {
   var header = `\n## Questions\n\n`;
   var faqs = `### FAQs\n\n` + questions;
-  var help = `\n\nIf you have any questions or concerns, feel free to contact me at my [GitHub](https://github.com/${userName}) or via email at ${email}.\n`;
+  var help = `\n\nIf you have any questions or concerns, feel free to contact me at my [GitHub](https://github.com/${userName}) or via email at [${email}](${email}).\n`;
   return header + faqs + help;
 }
 
