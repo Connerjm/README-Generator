@@ -95,6 +95,12 @@ function promptUser(response)
         type: "input",
         message: "What is your email address?",
         when: chosenSections.includes("Questions"),
+        validate: email =>//Taken from Stack Overflow, question 46155 (Couldn't find a user name for the answer I used.).
+        {
+            //BTW, regex are still an absolute clusterf**k.
+            const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            return re.test(String(email).toLowerCase());
+        },
         name: "email"
     },
     {
